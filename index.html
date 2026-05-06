@@ -4,54 +4,204 @@
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mini VSCode Python</title>
+    <title>PyStudy by Nochelli</title>
 
+    <!-- PYODIDE -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
+
+    <!-- MONACO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
 
-        body {
+        * {
             margin: 0;
-            background: #1e1e1e;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background: #0f0f10;
             color: white;
-            font-family: Consolas;
+
+            font-family: Inter, sans-serif;
+
+            height: 100vh;
+
             display: flex;
             flex-direction: column;
-            height: 100vh;
         }
 
         .topbar {
-            background: #333;
-            padding: 10px;
+
+            height: 70px;
+
+            background: rgba(28,28,30,0.9);
+
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 24px;
+        }
+
+        .logo {
+
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #0a84ff;
+        }
+
+        .actions {
+
+            display: flex;
+            gap: 12px;
         }
 
         button {
-            background: #0078d4;
-            color: white;
+
             border: none;
-            padding: 10px 20px;
+
+            border-radius: 999px;
+
+            padding: 12px 22px;
+
             cursor: pointer;
+
+            font-weight: 600;
+
+            transition: 0.2s;
         }
 
-        textarea {
+        .run-btn {
+
+            background: #0a84ff;
+            color: white;
+        }
+
+        .run-btn:hover {
+
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .clear-btn {
+
+            background: #2c2c2e;
+            color: white;
+        }
+
+        .container {
+
             flex: 1;
-            background: #1e1e1e;
-            color: #d4d4d4;
-            border: none;
-            padding: 20px;
-            font-size: 16px;
-            resize: none;
-            outline: none;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            padding: 30px;
+
+            overflow: hidden;
+        }
+
+        .editor-box,
+        .output-box {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            background: #1c1c1e;
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255,255,255,0.05);
+
+            box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+        }
+
+        .section-title {
+
+            padding: 14px 20px;
+
+            color: #8e8e93;
+
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+
+            font-size: 14px;
+        }
+
+        #editor {
+
+            width: 100%;
+
+            height: 420px;
         }
 
         #output {
-            height: 250px;
-            background: #111;
-            color: #00ff88;
-            padding: 15px;
-            overflow: auto;
+
+            min-height: 160px;
+
+            max-height: 160px;
+
+            overflow-y: auto;
+
+            padding: 20px;
+
+            color: #32d74b;
+
             white-space: pre-wrap;
+
+            font-family: Consolas;
+        }
+
+        .footer {
+
+            padding: 10px;
+
+            text-align: center;
+
+            color: #6e6e73;
+
+            font-size: 13px;
+        }
+
+        @media(max-width: 768px) {
+
+            .topbar {
+
+                padding: 0 16px;
+            }
+
+            .container {
+
+                padding: 16px;
+            }
+
+            #editor {
+
+                height: 320px;
+            }
         }
 
     </style>
@@ -61,41 +211,140 @@
 <body>
 
     <div class="topbar">
-        <button onclick="runPython()">
-            ▶ Executar
-        </button>
+
+        <div class="logo">
+            Py<span>Study</span>
+        </div>
+
+        <div class="actions">
+
+            <button class="clear-btn" onclick="clearEditor()">
+                Limpar
+            </button>
+
+            <button class="run-btn" onclick="runPython()">
+                ▶ Executar
+            </button>
+
+        </div>
+
     </div>
 
-    <textarea id="code">
-print("Olá mundo!")
+    <div class="container">
 
-for i in range(5):
-    print(i)
-    </textarea>
+        <div class="editor-box">
 
-    <div id="output">
-Terminal...
+            <div class="section-title">
+                editor.py
+            </div>
+
+            <div id="editor"></div>
+
+        </div>
+
+        <div class="output-box">
+
+            <div class="section-title">
+                Terminal
+            </div>
+
+            <div id="output">
+Carregando Python...
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Projetado para praticar a sintaxe Python - Nochelli
     </div>
 
     <script>
 
         let pyodide;
+        let editor;
 
-        async function main() {
+        async function start() {
 
             pyodide = await loadPyodide();
 
             document.getElementById("output").innerText =
-                "Python carregado.";
+                "Python carregado 🚀";
+
+            require.config({
+                paths: {
+                    vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs'
+                }
+            });
+
+            require(["vs/editor/editor.main"], function () {
+
+                editor = monaco.editor.create(
+                    document.getElementById("editor"),
+                    {
+
+                        value:
+`print("Bem-vindo ao PyStudy 🚀")
+
+for i in range(5):
+    print("Linha:", i)
+`,
+
+                        language: "python",
+
+                        theme: "vs-dark",
+
+                        automaticLayout: true,
+
+                        minimap: {
+                            enabled: false
+                        },
+
+                        fontSize: 16,
+
+                        roundedSelection: true,
+
+                        scrollBeyondLastLine: false,
+
+                        smoothScrolling: true,
+
+                        tabSize: 4,
+
+                        insertSpaces: true,
+
+                        wordWrap: "on",
+
+                        contextmenu: true,
+
+                        quickSuggestions: true,
+
+                        mouseWheelZoom: true,
+
+                        copyWithSyntaxHighlighting: true,
+
+                        multiCursorModifier: "ctrlCmd"
+
+                    }
+                );
+
+            });
 
         }
 
-        main();
+        start();
+
+        function clearEditor() {
+
+            editor.setValue("");
+
+            document.getElementById("output").innerText =
+                "Terminal limpo.";
+        }
 
         async function runPython() {
 
-            const code =
-                document.getElementById("code").value;
+            const code = editor.getValue();
 
             const output =
                 document.getElementById("output");
@@ -109,7 +358,7 @@ import sys
 from io import StringIO
 
 sys.stdout = StringIO()
-`);
+                `);
 
                 pyodide.runPython(code);
 
@@ -117,12 +366,12 @@ sys.stdout = StringIO()
                     "sys.stdout.getvalue()"
                 );
 
-                output.innerText = result;
+                output.innerText =
+                    result || "Código executado sem saída.";
 
             } catch (err) {
 
                 output.innerText = err;
-
             }
         }
 
@@ -131,3 +380,4 @@ sys.stdout = StringIO()
 </body>
 
 </html>
+```
