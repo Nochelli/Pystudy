@@ -401,37 +401,54 @@ button {
     position: relative;
 }
 
-        @media(max-width: 768px) {
+@media(max-width: 768px) {
 
-            .topbar {
+    .topbar {
+        padding: 12px;
+        height: auto;
+    }
 
-                padding: 0 16px;
+    .topbar-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
 
-                height: auto;
+    .logo {
+        text-align: center;
+    }
 
-                min-height: 70px;
-            }
+    .actions {
 
-            .actions {
+        flex-direction: column; /* 🔥 AQUI É O QUE FALTAVA */
 
-                flex-wrap: wrap;
-            }
+        width: 100%;
 
-            .container {
+        gap: 10px;
+    }
 
-                padding: 16px;
-            }
+    button {
+        width: 100%;
+        justify-content: center;
+    }
 
-            #editor {
+    #editor {
+        height: 300px;
+    }
 
-                height: 320px;
-            }
+    .container {
+        padding: 10px;
+    }
 
-            .sidebar {
+    .sidebar {
+        width: 100%;
+    }
 
-                width: 100%;
-            }
-        }
+    .editor-box,
+    .output-box {
+        max-width: 100%;
+    }
+}
 
     </style>
 
