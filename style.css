@@ -269,6 +269,7 @@ button:active {
         .sidebar.open {
 
             right: 0;
+            border-radius: 24px;
         }
 
         .sidebar-header {
