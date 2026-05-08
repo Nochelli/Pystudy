@@ -206,10 +206,27 @@ p1 = Pessoa("Nochelli")
 p1.apresentar()
         </div>
 
+<h3>Métodos</h3>
+
+<p>
+    Métodos são funções dentro de uma classe.
+</p>
+
+<div class="code-example">
+class Calculadora:
+
+    def soma(self, a, b):
+        return a + b
+
+calc = Calculadora()
+
+print(calc.soma(5, 3))
+</div>
+
 <h3>Herança</h3>
 
 <p>
-    Uma classe pode herdar características de outra.
+    Uma classe pode herdar características de outra. [Reutilizar código]
 </p>
 
 <div class="code-example">
@@ -228,27 +245,11 @@ dog = Cachorro()
 dog.falar()
 </div>
 
-<h3>Métodos</h3>
-
-<p>
-    Métodos são funções dentro de uma classe.
-</p>
-
-<div class="code-example">
-class Calculadora:
-
-    def soma(self, a, b):
-        return a + b
-
-calc = Calculadora()
-
-print(calc.soma(5, 3))
-</div>
 
 <h3>Encapsulamento</h3>
 
 <p>
-    Encapsulamento protege dados internos da classe.
+    Encapsulamento protege dados internos da classe. [Proteger dados]
 </p>
 
 <div class="code-example">
@@ -260,6 +261,58 @@ class Conta:
 conta = Conta()
 
     </div>
+<h3>Polimorfismo</h3>
+
+<p>
+    Polimorfismo permite que o mesmo método tenha comportamentos diferentes. [Mesmo método, comportamentos diferentes]
+</p>
+
+<div class="code-example">
+class Gato:
+
+    def falar(self):
+        print("Miau")
+
+class Cachorro:
+
+    def falar(self):
+        print("Au au")
+
+animais = [Gato(), Cachorro()]
+
+for animal in animais:
+    animal.falar()
+</div>
+
+
+<h3>Abstração</h3>
+
+<p>
+    Abstração esconde detalhes complexos e define regras para outras classes. [Esconder complexidade]
+</p>
+
+<div class="code-example">
+from abc import ABC, abstractmethod
+
+class Forma(ABC):
+
+    @abstractmethod
+    def area(self):
+        pass
+
+class Quadrado(Forma):
+
+    def __init__(self, lado):
+        self.lado = lado
+
+    def area(self):
+        return self.lado * self.lado
+
+q = Quadrado(4)
+
+print(q.area())
+</div>
+
     </div>
 
 <!-- SIDEBAR EXEMPLOS -->
