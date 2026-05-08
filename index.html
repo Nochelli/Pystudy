@@ -17,7 +17,7 @@
     <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 
     <link rel="manifest" href="manifest.json">
@@ -625,3 +625,42 @@ print(maior)
     </div>
 
 </div>
+
+    </div>
+
+</div>
+
+<!-- BOTÃO FLUTUANTE -->
+
+<button class="ai-float-btn" onclick="toggleAI()">
+    🤖
+</button>
+
+<!-- JANELA IA -->
+
+<div class="ai-window" id="aiWindow">
+
+    <div class="ai-header" id="aiHeader">
+
+        <h2>AI <span>Teacher</span></h2>
+
+        <button class="close-ai" onclick="toggleAI()">
+            ✕
+        </button>
+
+    </div>
+
+    <p id="status">
+        Let's go! 🤖
+    </p>
+
+    <button class="ai-btn" onclick="gerarExercicio()">
+        Gerar Exercício
+    </button>
+
+    <pre id="resultado"></pre>
+
+</div>
+
+</body>
+</html>
