@@ -1,4 +1,3 @@
-# PyStudy
 # PyLab by Nochelli
 
 PyLab é um ambiente de estudos Python desenvolvido para funcionar diretamente no navegador. O projeto utiliza Pyodide para executar código Python em tempo real sem necessidade de instalação local e Monaco Editor para oferecer uma experiência semelhante ao VS Code.
