@@ -672,8 +672,10 @@ left: 20px;
 /* PROFESSOR IA MOBILE */
 .ai-window {
 
-    width: 200px;
-    max-width: 50%;
+    width: 260px;
+    max-width: 80%;
+
+    height: 380px; 
 
     bottom: 80px;
     left: 10px;
@@ -685,17 +687,55 @@ left: 20px;
     font-size: 13px;
 }
 
+.ai-header {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+}
+
 .ai-header h2 {
+
     font-size: 15px;
+    margin: 0;
+}
+
+.close-ai {
+
+    background: transparent;
+    border: none;
+
+    color: white;
+
+    font-size: 18px;
+
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    padding: 0;
 }
 
 .ai-btn {
+
     font-size: 13px;
     padding: 10px;
 }
 
 #resultado {
-    max-height: 180px;
+
+    max-height: 120px; /* menor altura */
+    overflow-y: auto;
+
     font-size: 12px;
 }
 }
