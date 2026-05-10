@@ -389,3 +389,39 @@ function toggleAI() {
 }
 
 window.toggleAI = toggleAI;
+
+document.addEventListener("click", (e) => {
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const examplesSidebar =
+        document.getElementById("examplesSidebar");
+
+    const pyDocsButton =
+        document.querySelector('[onclick="toggleDictionary()"]');
+
+    const examplesButton =
+        document.querySelector('[onclick="toggleExamples()"]');
+
+    // PYDOCS
+    if (
+        sidebar.classList.contains("open") &&
+        !sidebar.contains(e.target) &&
+        !pyDocsButton.contains(e.target)
+    ) {
+
+        sidebar.classList.remove("open");
+    }
+
+    // CODE EXAMPLES
+    if (
+        examplesSidebar.classList.contains("open") &&
+        !examplesSidebar.contains(e.target) &&
+        !examplesButton.contains(e.target)
+    ) {
+
+        examplesSidebar.classList.remove("open");
+    }
+
+});
