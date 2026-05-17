@@ -671,11 +671,24 @@ print(maior)</div>
     </div>
 
     <p id="status">
-        Let's go! 🤖
+        Vamos analisar seu código e gerar exercícios com níveis reais.
     </p>
 
-    <button class="ai-btn" onclick="gerarExercicio()">
+    <div class="ai-controls">
+        <label for="aiLevel">Nível do exercício:</label>
+        <select id="aiLevel">
+            <option value="easy">Fácil</option>
+            <option value="medium">Médio</option>
+            <option value="hard">Difícil</option>
+        </select>
+    </div>
+
+    <button class="ai-btn" onclick="generateExercise()">
         Gerar Exercício
+    </button>
+
+    <button class="ai-btn" onclick="analyzeCode()">
+        Verificar Código
     </button>
 
     <pre id="resultado"></pre>

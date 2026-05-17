@@ -149,10 +149,10 @@ button:active {
     position: fixed;
 
     left: 20px;
-top: 120px;
-left: 20px;
+    top: 120px;
     width: 280px;
-    height: 400px;
+    height: auto;
+    max-height: none;
 
     background: rgba(20, 20, 20, 0.65);
 
@@ -167,13 +167,19 @@ left: 20px;
 
     z-index: 9999;
 
-    overflow-y: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
 
     box-shadow: 0 8px 40px rgba(0,0,0,0.35);
 
     color: white;
 
     font-family: Inter;
+}
+
+#resultado {
+    overflow: hidden;
+    max-height: none;
 }
 
 .ai-header {
@@ -184,6 +190,28 @@ left: 20px;
 
     margin-bottom: 15px;
 }
+.ai-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.ai-controls label {
+    font-size: 14px;
+    color: #d0d0d0;
+}
+
+.ai-controls select {
+    width: 88px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: #121212;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
 .ai-btn {
 
     width: 100%;
@@ -414,7 +442,7 @@ left: 20px;
     bottom: 100px;
 
     width: 350px;
-    height: 450px;
+    height: 510px;
 
     background: rgba(29, 27, 27, 0.878);
 
@@ -675,7 +703,8 @@ left: 20px;
     width: 260px;
     max-width: 80%;
 
-    height: 380px; 
+    height: auto;
+    max-height: none;
 
     bottom: 80px;
     left: 10px;
@@ -733,8 +762,8 @@ left: 20px;
 
 #resultado {
 
-    max-height: 120px; /* menor altura */
-    overflow-y: auto;
+    max-height: none;
+    overflow: visible;
 
     font-size: 12px;
 }
