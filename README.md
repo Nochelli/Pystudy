@@ -1,5 +1,6 @@
 # PYLAB
-PyLab é um ambiente que desenvolvi para estudar Python e ter a facilidade de acessar diretamente no navegador. _(está responsivo, podendo até estudar via mobile)_
+PyLab é um ambiente que desenvolvi para estudar Python e ter a facilidade de acessar diretamente no navegador. _(está responsivo, podendo até estudar via mobile)_.
+
 O projeto utiliza Pyodide para executar código Python em tempo real sem necessidade de instalação local e Monaco Editor para oferecer uma experiência semelhante ao VS Code.
 
 O projeto foi desenvolvido utilizando HTML, CSS e JavaScript, com foco em aprendizado, prática de programação e interface moderna.
