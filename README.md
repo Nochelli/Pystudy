@@ -1,6 +1,5 @@
 # PYLAB 
 ![Author](https://img.shields.io/badge/Author-Jeferson%20Nochelli-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
 
 PyLab é um ambiente que desenvolvi para estudar Python e ter a facilidade de acessar diretamente no navegador. _(está responsivo, podendo até estudar via mobile)_.
 
